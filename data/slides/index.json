@@ -1,0 +1,32 @@
+{
+	"slides": [
+		{
+			"id": 1,
+			"title": "Filipino Girl Group BINI’s Historic Coachella Debut",
+			"image": "https://www.hollywoodreporter.com/wp-content/uploads/2026/04/BINI_Exclusive-Watermarked-THR-7.jpg?w=2250",
+			"description": "Making history as the first act from the Philippines to perform at the fest, the young women of BINI are learning to balance the pride and pressure that comes with representing their country on the global stage.",
+			"link": "https://www.abs-cbn.com/entertainment/showbiz/music/2026/4/20/bini-members-break-down-2nd-coachella-performance-2019"
+		},
+		{
+			"id": 2,
+			"title": "BINI members break down 2nd Coachella performance",
+			"image": "https://od2-workbench-api.abs-cbn.com/api/upload-raw/20260420130416/8a926ff6-71af-4bb2-9536-3f67e4374b13.jpg",
+			"description": "Coachella 2026 officially wrapped up and the nation’s girl group BINI is still on cloud nine, after successfully completing their two-weekend performance and making history as the first Filipino group to ever perform in Coachella.",
+			"link": "https://www.abs-cbn.com/entertainment/showbiz/music/2026/4/20/bini-members-break-down-2nd-coachella-performance-2019"
+		},
+		{
+			"id": 3,
+			"title": "BINI waves Filipino pride with live performance at Grammy Museum ",
+			"image": "https://cebudailynews.inquirer.net/files/2026/04/676887734_965126839443681_8675168219185089851_n-1024x576.jpg",
+			"description": "Right after making history and slaying the stage at Coachella on weekend 1 and 2, the ‘Nation’s Girl Group’ BINI is making every Filipino proud again as they performed live in the Grammy Museum in Los Angeles, Tuesday April 21.",
+			"link": "https://cebudailynews.inquirer.net/719727/bini-waves-filipino-pride-with-live-performance-at-grammy-museum"
+		},
+		{
+			"id": 4,
+			"title": "BINI hits the red carpet at Billboard Women In Music 2026",
+			"image": "https://od2-image-api.abs-cbn.com/prod/editorImage/1777515370952AFP__20260430__2273786138__v1__HighRes__2026BillboardWomenInMusic%202%20(1).jpg",
+			"description": "The Nation's Girl Group BINI is set to receive the Global Force Award at the 2026 Billboard Women in Music Awards in Los Angeles.",
+			"link": "https://www.abs-cbn.com/entertainment/showbiz/music/2026/4/30/bini-hits-the-red-carpet-at-billboard-women-in-music-2026-1037"
+		}
+	]
+}
