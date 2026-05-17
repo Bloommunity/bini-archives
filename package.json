@@ -1,0 +1,20 @@
+{
+	"name": "bini-archives",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview"
+	},
+	"dependencies": {
+		"gsap": "^3.12.2",
+		"lottie-web": "^5.12.2"
+	},
+	"devDependencies": {
+		"@nuxtjs/tailwindcss": "^6.11.0",
+		"nuxt": "3.21.4"
+	}
+}

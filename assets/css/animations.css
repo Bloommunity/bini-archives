@@ -1,0 +1,316 @@
+/* Advanced Animation Styles */
+
+/* Floating animation */
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0px) translateX(0px);
+	}
+	50% {
+		transform: translateY(-20px) translateX(10px);
+	}
+}
+
+.float {
+	animation: float 4s ease-in-out infinite;
+}
+
+/* Glow animation */
+@keyframes glow {
+	0%,
+	100% {
+		box-shadow: 0 0 20px rgba(77, 247, 247, 0.3);
+	}
+	50% {
+		box-shadow: 0 0 40px rgba(77, 247, 247, 0.6);
+	}
+}
+
+.glow {
+	animation: glow 2s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+	0% {
+		background-position: -1000px 0;
+	}
+	100% {
+		background-position: 1000px 0;
+	}
+}
+
+.shimmer {
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(77, 247, 247, 0.2) 50%,
+		transparent 100%
+	);
+	background-size: 1000px 100%;
+	animation: shimmer 3s infinite;
+}
+
+/* Slide in animations */
+@keyframes slideInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Fade in scale */
+@keyframes fadeInScale {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.fadeInScale {
+	animation: fadeInScale 0.6s ease-out;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.pulse {
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.bounce {
+	animation: bounce 2s ease-in-out infinite;
+}
+
+/* Rotate animation */
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.rotate {
+	animation: rotate 2s linear infinite;
+}
+
+/* Wave effect */
+@keyframes wave {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+.wave {
+	animation: wave 1s ease-in-out infinite;
+}
+
+/* Text reveal */
+@keyframes textReveal {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+.textReveal {
+	animation: textReveal 1s ease-out;
+}
+
+/* Blur in */
+@keyframes blurIn {
+	from {
+		opacity: 0;
+		filter: blur(10px);
+	}
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+.blurIn {
+	animation: blurIn 0.6s ease-out;
+}
+
+/* Color shift */
+@keyframes colorShift {
+	0% {
+		color: #4df7f7;
+	}
+	50% {
+		color: #008181;
+	}
+	100% {
+		color: #4df7f7;
+	}
+}
+
+.colorShift {
+	animation: colorShift 3s ease-in-out infinite;
+}
+
+/* Stagger animation helper classes */
+.stagger-1 {
+	animation-delay: 0.1s;
+}
+
+.stagger-2 {
+	animation-delay: 0.2s;
+}
+
+.stagger-3 {
+	animation-delay: 0.3s;
+}
+
+.stagger-4 {
+	animation-delay: 0.4s;
+}
+
+.stagger-5 {
+	animation-delay: 0.5s;
+}
+
+/* Parallax scroll effect */
+.parallax {
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+input,
+textarea,
+select {
+	transition: all 0.3s ease-in-out;
+}
+
+/* Hover scale effect */
+.hover-scale {
+	transition: transform 0.3s ease-out;
+}
+
+.hover-scale:hover {
+	transform: scale(1.05);
+}
+
+/* Hover glow effect */
+.hover-glow {
+	transition: box-shadow 0.3s ease-out;
+}
+
+.hover-glow:hover {
+	box-shadow: 0 0 30px rgba(77, 247, 247, 0.4);
+}
+
+/* Hover lift effect */
+.hover-lift {
+	transition: transform 0.3s ease-out;
+}
+
+.hover-lift:hover {
+	transform: translateY(-5px);
+}
+
+/* Loading spinner */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.spinner {
+	animation: spin 1s linear infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.gradient-shift {
+	background-size: 200% 200%;
+	animation: gradientShift 3s ease infinite;
+}
