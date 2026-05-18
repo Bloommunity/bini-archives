@@ -244,11 +244,10 @@
 						</p>
 
 						<!-- Details -->
-						<p
+						<div
 							class="relative z-10 text-xs sm:text-sm text-slate-600 dark:text-slate-500 mb-6 line-clamp-2 flex-grow group-hover:text-slate-700 dark:group-hover:text-accent-300 transition-colors duration-300"
-						>
-							{{ achievement.details }}
-						</p>
+							v-html="formatRichText(achievement.details)"
+						></div>
 
 						<!-- Enhanced Footer -->
 						<div
@@ -318,6 +317,7 @@ import {
 	getAchievementRoutePath,
 	type Achievement,
 } from "~/utils/achievements";
+import { formatRichText } from "~/utils/formatRichText";
 import { useSeo } from "~/composables/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);

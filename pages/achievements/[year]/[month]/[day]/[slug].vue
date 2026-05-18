@@ -86,12 +86,11 @@
 								<p class="text-lg leading-8 text-slate-700 dark:text-slate-200">
 									{{ achievement.description }}
 								</p>
-								<p
+								<div
 									v-if="achievement.details"
 									class="text-slate-600 dark:text-slate-400 leading-relaxed"
-								>
-									{{ achievement.details }}
-								</p>
+									v-html="formatRichText(achievement.details)"
+								></div>
 							</div>
 
 							<div class="flex flex-wrap gap-3">
@@ -181,6 +180,7 @@ import {
 	loadRelatedAchievements,
 	type Achievement,
 } from "~/utils/achievements";
+import { formatRichText } from "~/utils/formatRichText";
 import { useSeo } from "~/composables/useSeo";
 
 definePageMeta({ name: "achievements-year-month-day-slug" });

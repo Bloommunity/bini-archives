@@ -35,9 +35,11 @@
 					</p>
 
 					<!-- Details -->
-					<p v-if="details" class="text-xs text-accent-400/70 mb-3">
-						{{ details }}
-					</p>
+					<p
+						v-if="details"
+						class="text-xs text-accent-400/70 mb-3"
+						v-html="formattedDetails"
+					></p>
 
 					<!-- Footer -->
 					<div class="flex items-center justify-between flex-wrap gap-2">
@@ -81,6 +83,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import { formatRichText } from "~/utils/formatRichText";
+
 interface Props {
 	title: string;
 	description?: string;
@@ -92,6 +97,8 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const formattedDetails = computed(() => (details ? formatRichText(details) : ""));
 
 const formatDate = (date: string) => {
 	return new Date(date).toLocaleDateString("en-US", {
