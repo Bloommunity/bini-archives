@@ -24,7 +24,7 @@
 					href="http://listening-party.weverse.io/bini/wlp/1-174335389"
 					target="_blank"
 					rel="noreferrer noopener"
-					class="group block rounded-[32px] border border-slate-200/70 bg-white p-8 shadow-2xl shadow-slate-500/10 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:shadow-black/20 dark:hover:bg-white/20"
+					class="group block rounded-[32px] border border-slate-200/70 bg-white p-8 text-left shadow-2xl shadow-slate-500/10 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:shadow-black/20 dark:hover:bg-white/20"
 				>
 					<div class="flex items-center justify-between gap-4 mb-4">
 						<div>
@@ -55,7 +55,7 @@
 					href="http://stationhead.com/c/blooms"
 					target="_blank"
 					rel="noreferrer noopener"
-					class="group block rounded-[32px] border border-slate-200/70 bg-white p-8 shadow-2xl shadow-slate-500/10 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:shadow-black/20 dark:hover:bg-white/20"
+					class="group block rounded-[32px] border border-slate-200/70 bg-white p-8 text-left shadow-2xl shadow-slate-500/10 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:shadow-black/20 dark:hover:bg-white/20"
 				>
 					<div class="flex items-center justify-between gap-4 mb-4">
 						<div>
