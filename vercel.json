@@ -1,5 +1,5 @@
 {
-	"installCommand": "git pull --recurse-submodules && npm install",
+	"installCommand": "git submodule update --init --recursive && npm install",
 	"buildCommand": "npm run build",
 	"outputDirectory": ".output/public",
 	"git": {
