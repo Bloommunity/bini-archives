@@ -47,6 +47,7 @@
 			<!-- Enhanced Slider -->
 			<div class="relative max-w-6xl mx-auto">
 				<div
+					ref="sliderWrapper"
 					class="relative overflow-hidden rounded-[40px] shadow-2xl shadow-slate-900/50 group"
 				>
 					<!-- Slide Image -->
@@ -91,6 +92,7 @@
 
 					<!-- Navigation arrows -->
 					<button
+						type="button"
 						@click="previousSlide"
 						class="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/10 hover:bg-accent-500/30 text-white hover:text-accent-300 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-accent-500/20 hover:scale-110"
 						aria-label="Previous slide"
@@ -106,6 +108,7 @@
 					</button>
 
 					<button
+						type="button"
 						@click="nextSlide"
 						class="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/10 hover:bg-accent-500/30 text-white hover:text-accent-300 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-accent-500/20 hover:scale-110"
 						aria-label="Next slide"
@@ -161,11 +164,15 @@ gsap.registerPlugin();
 const slides = ref(slidesData.slides);
 const currentSlide = ref(0);
 const currentSlideLink = computed(() => slides.value[currentSlide.value]?.link ?? "/achievements");
-const sliderSelector = String.raw`.relative.overflow-hidden.rounded-[40px]`;
-let autoPlayInterval: NodeJS.Timeout | null = null;
+const sliderWrapper = ref<HTMLElement | null>(null);
+let autoPlayInterval: number | null = null;
 
-const nextSlide = () => {
-	gsap.to(sliderSelector, {
+const animateSlide = () => {
+	if (!sliderWrapper.value) {
+		return;
+	}
+
+	gsap.to(sliderWrapper.value, {
 		opacity: 0.8,
 		scale: 0.98,
 		duration: 0.3,
@@ -173,19 +180,16 @@ const nextSlide = () => {
 		repeat: 1,
 		ease: "power2.inOut",
 	});
+};
+
+const nextSlide = () => {
+	animateSlide();
 	currentSlide.value = (currentSlide.value + 1) % slides.value.length;
 	resetAutoPlay();
 };
 
 const previousSlide = () => {
-	gsap.to(sliderSelector, {
-		opacity: 0.8,
-		scale: 0.98,
-		duration: 0.3,
-		yoyo: true,
-		repeat: 1,
-		ease: "power2.inOut",
-	});
+	animateSlide();
 	currentSlide.value = (currentSlide.value - 1 + slides.value.length) % slides.value.length;
 	resetAutoPlay();
 };
