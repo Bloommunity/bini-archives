@@ -9,19 +9,42 @@ export function formatRichText(text = ""): string {
 			.replace(/"/g, "&quot;")
 			.replace(/'/g, "&#39;");
 
-	const escaped = escapeHtml(value);
+	const linkPlaceholder = (label: string, url: string) =>
+		`@@LINK:${encodeURIComponent(label)}|${encodeURIComponent(url)}@@`;
 
-	const withLinks = escaped.replace(
+	const placeholderText = value.replace(
 		/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-		'<a href="$2" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:text-accent-500 underline">$1</a>',
+		(_, label, url) => linkPlaceholder(label, url),
 	);
+
+	const escaped = escapeHtml(placeholderText);
+
+	const withLinks = escaped
+		.replace(/@@LINK:([^|]+)\|([^@]+)@@/g, (_, encodedLabel, encodedUrl) => {
+			const label = decodeURIComponent(encodedLabel);
+			const url = decodeURIComponent(encodedUrl);
+			return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:text-accent-500 underline">${label}</a>`;
+		})
+		.replace(/https?:\/\/[^\s)]+/g, (url) => {
+			return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:text-accent-500 underline">${url}</a>`;
+		});
 
 	const formatInline = (raw: string) =>
 		raw
 			.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
 			.replace(/__(.+?)__/g, "<strong>$1</strong>")
-			.replace(/\*(.+?)\*/g, "<em>$1</em>")
-			.replace(/_(.+?)_/g, "<em>$1</em>");
+			.replace(/\*(.+?)\*/g, "<em>$1</em>");
+
+	// Apply inline formatting but preserve existing HTML tags by tokenizing them
+	const safeFormatInline = (raw: string) => {
+		const tags: string[] = [];
+		const tokenized = raw.replace(/<[^>]+>/g, (m) => {
+			tags.push(m);
+			return `@@TAG${tags.length - 1}@@`;
+		});
+		const formatted = formatInline(tokenized);
+		return formatted.replace(/@@TAG(\d+)@@/g, (_, idx) => tags[Number(idx)] || "");
+	};
 
 	const buildList = (type: "ul" | "ol", items: string[]) => {
 		return items.length ? `<${type}>${items.join("")}</${type}>` : "";
@@ -73,7 +96,7 @@ export function formatRichText(text = ""): string {
 			flushParagraph();
 			flushList();
 			const level = Math.min(6, headingMatch[1].length);
-			blocks.push(`<h${level}>${formatInline(headingMatch[2].trim())}</h${level}>`);
+			blocks.push(`<h${level}>${safeFormatInline(headingMatch[2].trim())}</h${level}>`);
 			continue;
 		}
 
@@ -84,7 +107,7 @@ export function formatRichText(text = ""): string {
 				flushList();
 				currentList = { type: listLine.type, items: [] };
 			}
-			currentList.items.push(`<li>${formatInline(listLine.content.trim())}</li>`);
+			currentList.items.push(`<li>${safeFormatInline(listLine.content.trim())}</li>`);
 			continue;
 		}
 
@@ -92,7 +115,7 @@ export function formatRichText(text = ""): string {
 			flushList();
 		}
 
-		paragraphLines.push(formatInline(line));
+		paragraphLines.push(safeFormatInline(line));
 	}
 
 	flushParagraph();

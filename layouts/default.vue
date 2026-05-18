@@ -68,10 +68,10 @@
 							/>
 						</div>
 
-						<p
-							class="mt-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300"
+						<div
+							class="mt-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300 space-y-2"
 							v-html="selectedAlertMessage"
-						></p>
+						></div>
 
 						<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
 							<button
@@ -118,6 +118,7 @@ import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
 import ScrollTopButton from "~/components/ScrollTopButton.vue";
 import { useAchievementAlerts } from "~/composables/useAchievementAlerts";
+import { formatRichText } from "~/utils/formatRichText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,18 +126,11 @@ useDarkMode();
 const { selectedAlert, closeAlert, snoozeAlert } = useAchievementAlerts();
 const router = useRouter();
 
-const linkifyText = (text: string) => {
-	const urlPattern = /https?:\/\/[^\s)]+/g;
-	return text.replace(urlPattern, (url) => {
-		return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:text-accent-700 underline decoration-1 decoration-accent-500/50">${url}</a>`;
-	});
-};
-
 const selectedAlertMessage = computed(() => {
 	if (!selectedAlert.value) {
 		return "";
 	}
-	return linkifyText(selectedAlert.value.message);
+	return formatRichText(selectedAlert.value.message);
 });
 
 const handleSeeMore = (route?: string) => {
