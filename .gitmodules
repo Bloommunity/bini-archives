@@ -1,9 +1,9 @@
 [submodule "data/achievements"]
 	path = data/achievements
-	url = git@github-bini-archives-achievements:Bloommunity/bini-archives-achievements.git
+	url = https://github.com/Bloommunity/bini-archives-achievements.git
 [submodule "data/contributors"]
 	path = data/contributors
-	url = git@github-bini-archives-contributors:Bloommunity/bini-archives-contributors.git
+	url = https://github.com/Bloommunity/bini-archives-contributors.git
 [submodule "data/socials"]
 	path = data/socials
-	url = git@github-bini-archives-socials:Bloommunity/bini-archives-socials.git
+	url = https://github.com/Bloommunity/bini-archives-socials.git
