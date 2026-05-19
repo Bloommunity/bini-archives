@@ -1,6 +1,6 @@
 <template>
 	<section
-		class="relative mt-12 py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 text-slate-900 overflow-hidden rounded-[40px] shadow-2xl shadow-slate-300/20 dark:bg-slate-950 dark:text-white dark:shadow-slate-900/20"
+		class="relative py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 text-slate-900 overflow-hidden shadow-2xl shadow-slate-300/20 dark:bg-slate-950 dark:text-white dark:shadow-slate-900/20"
 	>
 		<div
 			class="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900/95 dark:via-slate-900/70 dark:to-slate-950/95"
@@ -21,7 +21,7 @@
 			</div>
 
 			<div
-				class="mx-auto max-w-4xl overflow-hidden rounded-[32px] border border-slate-200/80 shadow-2xl shadow-slate-300/20 bg-white dark:border-white/10 dark:shadow-slate-950/40 dark:bg-slate-900"
+				class="mx-auto max-w-4xl overflow-hidden border border-slate-200/80 shadow-2xl shadow-slate-300/20 bg-white dark:border-white/10 dark:shadow-slate-950/40 dark:bg-slate-900"
 			>
 				<div class="aspect-[12/7] sm:aspect-[16/9] bg-transparent">
 					<iframe
