@@ -245,8 +245,30 @@ import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SocialCard from "~/components/SocialCard.vue";
+import { useSeo } from "~/composables/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const baseUrl = "https://bini-archives.vercel.app";
+const { setSeoMetadata, setSeoJsonLd } = useSeo();
+
+setSeoMetadata({
+	title: "Socials | BINI Archives",
+	description:
+		"Follow BINI's official socials and BLOOMS community channels for news, updates, and exclusive content.",
+	keywords: ["BINI", "socials", "official accounts", "fan community"],
+	url: `${baseUrl}/socials`,
+	image: "/og-image.png",
+});
+
+setSeoJsonLd({
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	url: `${baseUrl}/socials`,
+	name: "Socials | BINI Archives",
+	description:
+		"Follow BINI's official socials and BLOOMS community channels for news, updates, and exclusive content.",
+});
 
 interface SocialPlatform {
 	handle: string;
@@ -606,15 +628,6 @@ onMounted(() => {
 	setTimeout(() => {
 		animateSections();
 	}, 500);
-});
-
-useSeoMeta({
-	title: "Connect with BINI & BLOOMS - Official Social Media",
-	description:
-		"Follow BINI on official social media accounts and join the BLOOMS community. Stay updated with the latest news and exclusive content.",
-	ogTitle: "Connect with BINI & BLOOMS - Official Social Media",
-	ogDescription:
-		"Follow BINI on official social media accounts and join the BLOOMS community. Stay updated with the latest news and exclusive content.",
 });
 </script>
 

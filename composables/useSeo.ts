@@ -7,6 +7,16 @@ export interface SeoMetadata {
 	type?: string;
 }
 
+const baseUrl = import.meta.env.NUXT_PUBLIC_SITE_URL || "https://bini-archives.vercel.app";
+
+const normalizeUrl = (url?: string) => {
+	if (!url) return "";
+	if (url.startsWith("http://") || url.startsWith("https://")) {
+		return url;
+	}
+	return baseUrl + (url.startsWith("/") ? url : `/${url}`);
+};
+
 export const useSeo = () => {
 	const route = useRoute();
 
@@ -34,13 +44,11 @@ export const useSeo = () => {
 				},
 				{
 					property: "og:image",
-					content: metadata.image || "/images/og-image.jpg",
+					content: normalizeUrl(metadata.image || "/og-image.png"),
 				},
 				{
 					property: "og:url",
-					content:
-						metadata.url ||
-						`${typeof window !== "undefined" ? window.location.origin : ""}${route.path}`,
+					content: normalizeUrl(metadata.url || route.path),
 				},
 				{
 					property: "og:type",
@@ -61,15 +69,13 @@ export const useSeo = () => {
 				},
 				{
 					name: "twitter:image",
-					content: metadata.image || "/images/og-image.jpg",
+					content: normalizeUrl(metadata.image || "/og-image.png"),
 				},
 			],
 			link: [
 				{
 					rel: "canonical",
-					href:
-						metadata.url ||
-						`${typeof window !== "undefined" ? window.location.origin : ""}${route.path}`,
+					href: normalizeUrl(metadata.url || route.path),
 				},
 			],
 		});

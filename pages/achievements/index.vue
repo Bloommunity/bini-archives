@@ -324,6 +324,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 const { setSeoMetadata, setSeoJsonLd } = useSeo();
 
+const baseUrl = "https://bini-archives.vercel.app";
+setSeoMetadata({
+	title: "Achievements | BINI Archives",
+	description:
+		"Explore all of BINI's remarkable achievements and milestones throughout the years",
+	keywords: ["BINI", "achievements", "milestones", "awards"],
+	url: `${baseUrl}/achievements`,
+	image: "/og-image.png",
+});
+setSeoJsonLd({
+	"@context": "https://schema.org",
+	"@type": "CollectionPage",
+	name: "BINI Achievements",
+	description: "All achievements and milestones of BINI",
+	url: `${baseUrl}/achievements`,
+});
+
 const route = useRoute();
 const router = useRouter();
 const years = ref<string[]>([]);
@@ -409,9 +426,9 @@ onMounted(async () => {
 	years.value = ["All", ...loadedYears];
 
 	// Set SEO metadata
-	const baseUrl = "https://bini-blooming-legacy.vercel.app";
+	const baseUrl = "https://bini-archives.vercel.app";
 	setSeoMetadata({
-		title: "Achievements | BINI Blooming Legacy",
+		title: "Achievements | BINI Archives",
 		description:
 			"Explore all of BINI's remarkable achievements and milestones throughout the years",
 		keywords: ["BINI", "achievements", "milestones", "awards"],

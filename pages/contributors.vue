@@ -53,7 +53,7 @@
 						class="page-description text-slate-700 dark:text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed"
 					>
 						Meet the talented individuals who make this project possible. These are the
-						passionate developers, designers, and creators behind BINI Blooming Legacy.
+						passionate developers, designers, and creators behind BINI Archives.
 					</p>
 
 					<!-- Animated call-to-action -->
@@ -106,8 +106,8 @@
 					<p
 						class="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto"
 					>
-						The brilliant minds behind BINI Blooming Legacy who bring creativity and
-						passion to every line of code
+						The brilliant minds behind BINI Archives who bring creativity and passion to
+						every line of code
 					</p>
 				</div>
 
@@ -239,8 +239,30 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSeo } from "~/composables/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const baseUrl = "https://bini-archives.vercel.app";
+const { setSeoMetadata, setSeoJsonLd } = useSeo();
+
+setSeoMetadata({
+	title: "Contributors | BINI Archives",
+	description:
+		"Meet the contributors powering BINI Archives, from developers to designers and community creators.",
+	keywords: ["BINI", "contributors", "team", "community"],
+	url: `${baseUrl}/contributors`,
+	image: "/og-image.png",
+});
+
+setSeoJsonLd({
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	url: `${baseUrl}/contributors`,
+	name: "Contributors | BINI Archives",
+	description:
+		"Meet the contributors powering BINI Archives, from developers to designers and community creators.",
+});
 
 interface Contributor {
 	id: number;
