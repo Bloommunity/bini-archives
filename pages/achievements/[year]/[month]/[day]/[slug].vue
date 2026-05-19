@@ -171,7 +171,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 import {
 	computeAchievementTags,
@@ -186,17 +186,22 @@ import { useSeo } from "~/composables/useSeo";
 definePageMeta({ name: "achievements-year-month-day-slug" });
 
 const route = useRoute();
-const achievement = ref<Achievement | null>(null);
-const related = ref<Achievement[]>([]);
-const loading = ref(true);
+const slug = computed(() => route.params.slug as string);
 const { setSeoMetadata, setSeoJsonLd } = useSeo();
 
-const year = computed(() => route.params.year as string);
-const month = computed(() => route.params.month as string);
-const day = computed(() => route.params.day as string);
-const slug = computed(() => route.params.slug as string);
+const { data: achievement, pending: loading } = await useAsyncData<Achievement | null>(
+	`achievement-${slug.value}`,
+	() => loadAchievement(slug.value),
+);
+
+const { data: related } = await useAsyncData(`achievement-related-${slug.value}`, async () => {
+	if (!achievement.value) {
+		return [];
+	}
+	return await loadRelatedAchievements(achievement.value);
+});
+
 const tags = computed(() => (achievement.value ? computeAchievementTags(achievement.value) : []));
-const authorLine = computed(() => achievement.value?.contributor || "");
 const contributorHandle = computed(() => {
 	const contributor = achievement.value?.contributor?.trim() || "";
 	const handle = contributor.replace(/^@+/, "");
@@ -211,51 +216,39 @@ const formatDate = (date: string) => {
 	});
 };
 
-const loadAchievementData = async () => {
-	loading.value = true;
-	try {
-		const achievementSlug = slug.value;
-		if (!achievementSlug) {
-			achievement.value = null;
-			return;
-		}
-
-		const data = await loadAchievement(achievementSlug);
-		achievement.value = data;
-
-		if (data) {
-			related.value = await loadRelatedAchievements(data);
-			const baseUrl = "https://bini-blooming-legacy.vercel.app";
-			setSeoMetadata({
-				title: `${data.title} | BINI Blooming Legacy`,
-				description: data.seo?.description || data.description,
-				keywords: data.seo?.keywords,
-				image: data.thumbnail,
-				url: `${baseUrl}${getAchievementRoutePath(data)}`,
-				type: "article",
-			});
-			setSeoJsonLd({
-				"@context": "https://schema.org",
-				"@type": "NewsArticle",
-				headline: data.title,
-				description: data.description,
-				image: data.thumbnail,
-				datePublished: data.date,
-				author: {
-					"@type": "Organization",
-					name: "BINI",
-				},
-			});
-		}
-	} catch (error) {
-		console.error("Error loading achievement:", error);
-		achievement.value = null;
-	} finally {
-		loading.value = false;
+const baseUrl = "https://bini-archives.vercel.app";
+let imageUrl = "/og-image.png";
+if (achievement.value?.thumbnail) {
+	if (achievement.value.thumbnail.startsWith("http")) {
+		imageUrl = achievement.value.thumbnail;
+	} else {
+		imageUrl =
+			baseUrl +
+			(achievement.value.thumbnail.startsWith("/")
+				? achievement.value.thumbnail
+				: `/${achievement.value.thumbnail}`);
 	}
-};
-
-onMounted(() => {
-	loadAchievementData();
-});
+}
+if (achievement.value) {
+	setSeoMetadata({
+		title: `${achievement.value.title} | BINI Archives`,
+		description: achievement.value.seo?.description || achievement.value.description,
+		keywords: achievement.value.seo?.keywords,
+		image: imageUrl,
+		url: `${baseUrl}${getAchievementRoutePath(achievement.value)}`,
+		type: "article",
+	});
+	setSeoJsonLd({
+		"@context": "https://schema.org",
+		"@type": "NewsArticle",
+		headline: achievement.value.title,
+		description: achievement.value.description,
+		image: imageUrl,
+		datePublished: achievement.value.date,
+		author: {
+			"@type": "Organization",
+			name: "BINI",
+		},
+	});
+}
 </script>

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Quick setup script for BINI Archives
 
-echo "🎉 Welcome to BINI Blooming Legacy Archive!"
+echo "🎉 Welcome to BINI Archives!"
 echo ""
 echo "Setting up your development environment..."
 echo ""

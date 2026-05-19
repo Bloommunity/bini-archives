@@ -2,7 +2,7 @@
 REM Quick setup script for BINI Archives (Windows)
 
 echo.
-echo 🎉 Welcome to BINI Blooming Legacy Archive!
+echo 🎉 Welcome to BINI Archives!
 echo.
 echo Setting up your development environment...
 echo.
