@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 		appManifest: true,
 	},
 	devtools: { enabled: true },
-	modules: ["@nuxtjs/tailwindcss"],
+	modules: ["@nuxtjs/tailwindcss", "@vercel/speed-insights"],
 	tailwindcss: {
 		exposeConfig: true,
 	},
